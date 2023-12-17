@@ -1,3 +1,11 @@
 /* body {
   background-color: yellow;
 } */
+
+.cloud {
+  background-image: url('./icons/4102315_cloud_weather_icon.png');
+}
+
+.clear {
+  background-image: url('./icons/4102326_cloud_sun_sunny_weather_icon.png');
+}
