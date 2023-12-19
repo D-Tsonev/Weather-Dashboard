@@ -2,6 +2,10 @@ const APIKey = "91d963d53697a7a28a646b274c52abda";
 
 const today = $('#today')
 const forecast = $('#forecast')
+const historyDiv = $('#history')
+const history =[]
+
+// getHistory()
 
 // cityName = $('#search-input')
 
@@ -19,11 +23,39 @@ searchBtn.on('click', function(event){
 
   $('#today').empty();
   $('#forecast').empty();
+  $('#history').empty()
+
+
   event.preventDefault(); 
   const todayCard = $('<div>').addClass('card  rounded bg-warning')
 
   cityName = $('#search-input').val()
-  console.log(cityName);
+
+// function getHistory () {
+
+//   if ("cities" in localStorage) {
+//     return JSON.parse(localStorage.getItem("cities"));
+//   }
+//   else 
+//   {
+//     return [];
+//   }
+// }
+
+
+
+if (!history.includes(cityName.toLowerCase())) {
+  history.push(cityName)}
+  historyDiv.empty();
+  history.forEach(city => {
+    const historyBtn = $('<button>').text(city.toUpperCase()).addClass('btn btn-secondary m-1').attr("data-name",city);
+    historyDiv.append(historyBtn);
+
+
+  });
+
+
+
 
   const queryURL = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${APIKey}`
   console.log(queryURL)
@@ -72,12 +104,19 @@ searchBtn.on('click', function(event){
       console.log(forecastURL)
 
     const forecastList = forecastData.list
+
+  console.log(forecastList[0].dt) + 86400
+
+  
+
+
+
     console.log(forecastList)
 
     for (let i = 1; i < 6; i++) {
       const currentDay = dayjs();
       const forecastDay = currentDay.add(i, 'day');
-      const forecast5Days = forecastList.find(item => dayjs(item.dt_txt).isSame(forecastDay, 'day'));
+      const forecast5Days = forecastList.find(day => dayjs(day.dt_txt).isSame(forecastDay, 'day'));
     
       //Formatting the forecast date
       const forecastDayFormatted = forecastDay.format('DD/MM/YYYY');
@@ -106,9 +145,7 @@ searchBtn.on('click', function(event){
       // Append the card to the forecast container
       $('#forecast').append(card);
     }
-
     })
-
 
       });
 
