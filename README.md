@@ -38,4 +38,4 @@ Day.js: Day.js library for handling date and time.
 
 <p>Link to  <a href="https://github.com/D-Tsonev/weather-dashboard">Repository</a><p>
 
-<p>Link to  <a href="https://d-tsonev.github.io/weather-dashboard/">GitHub Page</a><p>
+<p>Link to  <a href="https://d-tsonev.github.io/Weather-Dashboard/">GitHub Page</a><p>
